@@ -395,7 +395,7 @@ template<typename T>
 } // end system
 
 /*! \namespace thrust::tbb
- *  \brief \p thrust::tbb is a top-level alias for thrust::system::tbb.
+ *  \brief \p thrust::tbb is a top-level alias for \p thrust::system::tbb.
  */
 namespace tbb
 {

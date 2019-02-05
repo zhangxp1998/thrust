@@ -176,7 +176,7 @@ class TEST##UnitTest : public UnitTest {                         \
         std::vector<size_t> sizes = get_test_sizes();            \
         for(size_t i = 0; i != sizes.size(); ++i)                \
         {                                                        \
-            TEST<char>(sizes[i]);                                \
+            TEST<signed char>(sizes[i]);                         \
             TEST<unsigned char>(sizes[i]);                       \
             TEST<short>(sizes[i]);                               \
             TEST<unsigned short>(sizes[i]);                      \

@@ -1,7 +1,5 @@
-targets/
-*.pyc
-*.bak
-*.swp
-*.sconsign.dblite
-*.pgm
-*~
+thrust/system/cuda/detail/.gitignore
+.p4config
+run
+build
+doc/html

@@ -29,7 +29,8 @@
 namespace thrust
 {
 
-/*! \addtogroup memory_management_classes Memory Management Classes
+/** \addtogroup memory_resources Memory Resources
+ *  \ingroup memory_management_classes
  *  \{
  */
 

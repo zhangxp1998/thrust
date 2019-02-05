@@ -298,7 +298,7 @@ template<typename T>
 
 /*! Exchanges the values of two objects referred to by \p reference.
  *  \p x The first \p reference of interest.
- *  \p y The second \p reference ot interest.
+ *  \p y The second \p reference of interest.
  */
 template<typename T>
 __host__ __device__
@@ -395,7 +395,7 @@ template<typename T>
 } // end system
 
 /*! \namespace thrust::cpp
- *  \brief \p thrust::cpp is a top-level alias for thrust::system::cpp.
+ *  \brief \p thrust::cpp is a top-level alias for \p thrust::system::cpp.
  */
 namespace cpp
 {

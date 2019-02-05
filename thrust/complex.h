@@ -140,7 +140,7 @@ public:
    */
   __host__
   complex(const std::complex<T>& z);
-  
+
   /*! This converting copy constructor copies from a <tt>std::complex</tt> with
    *  a type that is convertible to this \p complex's \c value_type.
    *
@@ -148,7 +148,7 @@ public:
    *
    *  \tparam U is convertible to \c value_type.
    */
-  template <typename U> 
+  template <typename U>
   __host__
   complex(const std::complex<U>& z);
 
@@ -203,7 +203,7 @@ public:
    */
   __host__
   complex& operator=(const std::complex<T>& z);
-  
+
   /*! Assign `z.real()` and `z.imag()` to the real and imaginary parts of this
    *  \p complex respectively.
    *
@@ -211,10 +211,9 @@ public:
    *
    *  \tparam U is convertible to \c value_type.
    */
-  template <typename U> 
+  template <typename U>
   __host__
   complex& operator=(const std::complex<U>& z);
-
 
 
   /* --- Compound Assignment Operators --- */
@@ -379,7 +378,11 @@ public:
   operator std::complex<T>() const { return std::complex<T>(real(), imag()); }
 
 private:
+  /*! \cond
+   */
   struct generic_storage_type { T x; T y; };
+  /*! \endcond
+   */
 
 #if THRUST_DEVICE_COMPILER == THRUST_DEVICE_COMPILER_NVCC
   typedef typename detail::conditional<

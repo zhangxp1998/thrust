@@ -373,7 +373,7 @@ template<typename T, typename Alloc = thrust::device_malloc_allocator<T> >
      */
     void pop_back(void);
 
-    /*! This method swaps the contents of this vector_base with another vector.
+    /*! This method swaps the contents of this device_vector with another vector.
      *  \param v The vector with which to swap.
      */
     void swap(device_vector &v);

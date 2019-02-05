@@ -35,7 +35,7 @@ complex<T>::complex()
 {
   real(T());
   imag(T());
-} 
+}
 #endif
 
 template <typename T>
@@ -50,7 +50,7 @@ complex<T>::complex(const T& re)
 {
   real(re);
   imag(T());
-} 
+}
 #endif
 
 #if 0
@@ -85,7 +85,7 @@ complex<T>::complex(const T& re, const T& im)
   real(re);
   imag(im);
 }
-#endif 
+#endif
 
 #if 0
 template <typename T>
@@ -119,10 +119,10 @@ complex<T>::complex(const complex<T>& z)
   real(z.real());
   imag(z.imag());
 }
-#endif 
+#endif
 
 template <typename T>
-template <typename U> 
+template <typename U>
 __host__ __device__
 complex<T>::complex(const complex<U>& z)
 #if __cplusplus >= 201103L
@@ -136,7 +136,7 @@ complex<T>::complex(const complex<U>& z)
   real(T(z.real()));
   imag(T(z.imag()));
 }
-#endif 
+#endif
 
 template <typename T>
 __host__
@@ -167,7 +167,7 @@ complex<T>::complex(const std::complex<U>& z)
 {
   real(T(z.real()));
   imag(T(z.imag()));
-}  
+}
 #endif
 
 

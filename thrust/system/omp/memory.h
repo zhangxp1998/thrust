@@ -395,7 +395,7 @@ template<typename T>
 } // end system
 
 /*! \namespace thrust::omp
- *  \brief \p thrust::omp is a top-level alias for thrust::system::omp.
+ *  \brief \p thrust::omp is a top-level alias for \p thrust::system::omp.
  */
 namespace omp
 {
