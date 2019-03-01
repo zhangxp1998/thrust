@@ -84,11 +84,6 @@ public:
 
   /* --- Constructors --- */
 
-  /*! Default construct a complex number.
-   */
-  __host__ __device__
-  complex();
-
   /*! Construct a complex number with an imaginary part of 0.
    *
    *  \param re The real part of the number.
@@ -104,6 +99,23 @@ public:
   __host__ __device__
   complex(const T& re, const T& im);
 
+#if THRUST_CPP_DIALECT >= 2011
+  /*! Default construct a complex number.
+   */
+  complex() = default;
+
+  /*! This copy constructor copies from a \p complex with a type that is
+   *  convertible to this \p complex's \c value_type.
+   *
+   *  \param z The \p complex to copy from.
+   */
+  complex(const complex<T>& z) = default;
+#else
+  /*! Default construct a complex number.
+   */
+  __host__ __device__
+  complex();
+
   /*! This copy constructor copies from a \p complex with a type that is
    *  convertible to this \p complex's \c value_type.
    *
@@ -111,6 +123,7 @@ public:
    */
   __host__ __device__
   complex(const complex<T>& z);
+#endif
 
   /*! This converting copy constructor copies from a \p complex with a type
    *  that is convertible to this \p complex's \c value_type.
@@ -130,7 +143,7 @@ public:
    */
   __host__ THRUST_STD_COMPLEX_DEVICE
   complex(const std::complex<T>& z);
-  
+
   /*! This converting copy constructor copies from a <tt>std::complex</tt> with
    *  a type that is convertible to this \p complex's \c value_type.
    *
@@ -154,6 +167,14 @@ public:
   __host__ __device__
   complex& operator=(const T& re);
 
+#if THRUST_CPP_DIALECT >= 2011
+  /*! Assign `z.real()` and `z.imag()` to the real and imaginary parts of this
+   *  \p complex respectively.
+   *
+   *  \param z The \p complex to copy from.
+   */
+  complex& operator=(const complex<T>& z) = default;
+#else
   /*! Assign `z.real()` and `z.imag()` to the real and imaginary parts of this
    *  \p complex respectively.
    *
@@ -161,6 +182,7 @@ public:
    */
   __host__ __device__
   complex& operator=(const complex<T>& z);
+#endif
 
   /*! Assign `z.real()` and `z.imag()` to the real and imaginary parts of this
    *  \p complex respectively.
@@ -180,7 +202,7 @@ public:
    */
   __host__ THRUST_STD_COMPLEX_DEVICE
   complex& operator=(const std::complex<T>& z);
-  
+
   /*! Assign `z.real()` and `z.imag()` to the real and imaginary parts of this
    *  \p complex respectively.
    *
@@ -191,7 +213,6 @@ public:
   template <typename U>
   __host__ THRUST_STD_COMPLEX_DEVICE
   complex& operator=(const std::complex<U>& z);
-
 
 
   /* --- Compound Assignment Operators --- */
@@ -356,7 +377,11 @@ public:
   operator std::complex<T>() const { return std::complex<T>(real(), imag()); }
 
 private:
+  /*! \cond
+   */
   struct generic_storage_type { T x; T y; };
+  /*! \endcond
+   */
 
 #if THRUST_DEVICE_COMPILER == THRUST_DEVICE_COMPILER_NVCC
   typedef typename detail::conditional<

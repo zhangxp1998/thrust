@@ -330,6 +330,9 @@ void swap(reference<T> x, reference<T> y);
 
 } // end tbb
 
+/*! \}
+ */
+
 } // end system
 
 /*! \namespace thrust::tbb
