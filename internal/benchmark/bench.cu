@@ -6,10 +6,9 @@
 #include <thrust/scan.h>
 #include <thrust/detail/config.h>
 
-#if THRUST_CPP_DIALECT >= 2011
+#if THRUST_CPP_DIALECT >= 2011 && THRUST_VERSION >= 100909
 #include <thrust/random.h>
 #include <thrust/shuffle.h>
-
 #include <random>
 #endif
 
@@ -466,7 +465,10 @@ struct experiment_driver
     );
     #endif
 
-    std::cout << THRUST_VERSION                // Thrust Version.
+    std::cout << THRUST_MAJOR_VERSION    << "."
+              << THRUST_MINOR_VERSION    << "."
+              << THRUST_SUBMINOR_VERSION << "-"
+              << THRUST_PATCH_NUMBER           // Thrust Version.
       << ","  << test_name                     // Algorithm.
       << ","  << element_type_name             // Element Type.
       << ","  << element_size                  // Element Size.
@@ -699,7 +701,7 @@ struct copy_trial_base : trial_base<TrialKind>
   }
 };
 
-#if THRUST_CPP_DIALECT >= 2011
+#if THRUST_CPP_DIALECT >= 2011 && THRUST_VERSION >= 100909
 template <typename Container, typename TrialKind = regular_trial>
 struct shuffle_trial_base : trial_base<TrialKind>
 {
@@ -909,7 +911,7 @@ struct copy_tester
   #endif
 };
 
-#if THRUST_CPP_DIALECT >= 2011
+#if THRUST_CPP_DIALECT >= 2011 && THRUST_VERSION >= 100909
 template <typename T>
 struct shuffle_tester
 {
@@ -992,7 +994,7 @@ void run_core_primitives_experiments_for_type()
     , RegularTrials
   >::run_experiment();
 
-#if THRUST_CPP_DIALECT >= 2011
+#if THRUST_CPP_DIALECT >= 2011 && THRUST_VERSION >= 100909
   experiment_driver<
       shuffle_tester
     , ElementMetaType
