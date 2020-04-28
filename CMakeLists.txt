@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.8)
 
 project(Thrust CXX)
 
+set(THRUST_CXX_WARNINGS "" CACHE STRING "CXX warning options")
 set(THRUST_SOURCE ${CMAKE_SOURCE_DIR})
 include(cmake/common_variables.cmake)
 
@@ -223,11 +224,9 @@ if ("GNU" STREQUAL "${CMAKE_CXX_COMPILER_ID}")
     append_option_if_available("-Wlogical-op" THRUST_CXX_WARNINGS)
   endif ()
 
-  if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 7.3)
     # GCC 7.3 complains about name mangling changes due to `noexcept`
     # becoming part of the type system; we don't care.
     append_option_if_available("-Wno-noexcept-type" THRUST_CXX_WARNINGS)
-  endif ()
 
   if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8.1 AND CMAKE_CXX_STANDARD EQUAL 98)
     # thrust::complex can't really be made trivially copyable in pre-11.
@@ -249,7 +248,7 @@ if ("Clang" STREQUAL "${CMAKE_CXX_COMPILER_ID}")
   # on older versions of Clang.
   append_option_if_available("-Wno-unneeded-internal-declaration" THRUST_CXX_WARNINGS)
 endif ()
-
+LIST(REMOVE_DUPLICATES THRUST_CXX_WARNINGS)
 foreach (CXX_OPTION IN LISTS THRUST_CXX_WARNINGS)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CXX_OPTION}")
 endforeach ()
@@ -376,7 +375,6 @@ target_include_directories(
 )
 
 include(CTest)
-enable_testing()
 
 # Handle tests.
 
